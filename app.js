@@ -54,6 +54,7 @@ class App{
 		this.loadingBar = new LoadingBar();
 		
 		this.loadCollege();
+        this.loadID3();
         
         this.immersive = false;
         
@@ -91,10 +92,8 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );  
     }
 
-    
-	loadCollege(){
-
-        const loader = new THREE.OBJLoader();
+    loadID3(){
+            const loader = new THREE.OBJLoader();
         const textureLoader = new THREE.TextureLoader();
 
         // Load the object
@@ -103,6 +102,8 @@ class App{
             object.scale.set(112, 112, 112);
             scene.add(object);
         });
+
+	loadCollege(){
         
 		const loader = new GLTFLoader( ).setPath(this.assetsPath);
         const dracoLoader = new DRACOLoader();
