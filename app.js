@@ -54,7 +54,6 @@ class App{
 		this.loadingBar = new LoadingBar();
 		
 		this.loadCollege();
-        this.loadID3();
         
         this.immersive = false;
         
@@ -91,19 +90,7 @@ class App{
         this.camera.updateProjectionMatrix();
         this.renderer.setSize( window.innerWidth, window.innerHeight );  
     }
-
-    loadID3(){
-            const loader = new THREE.OBJLoader();
-        const textureLoader = new THREE.TextureLoader();
-
-        // Load the object
-        loader.load('ID3project.obj', (object) => {
-            // Add the object to the scene or perform any other operations
-            object.scale.set(112, 112, 112);
-            object.position.set(0, 0, 0);
-            scene.add(object);
-        });
-
+    
 	loadCollege(){
         
 		const loader = new GLTFLoader( ).setPath(this.assetsPath);
@@ -116,7 +103,7 @@ class App{
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'college.glbz',
+			'college.glb',
 			// called when the resource is loaded
 			function ( gltf ) {
 
