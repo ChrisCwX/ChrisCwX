@@ -97,18 +97,32 @@ class App{
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath( './libs/three/js/draco/' );
         loader.setDRACOLoader( dracoLoader );
+        const objGroup = new THREE.Group();
         
         const self = this;
 		
 		// Load a glTF resource
 		loader.load(
 			// resource URL
+             'ID3project.obj',
 			'college.glb',
 			// called when the resource is loaded
 			function ( gltf ) {
 
                 const college = gltf.scene.children[0];
 				self.scene.add( college );
+                const idproject = gltf.scene;
+                objGroup.add(idproject);
+
+                spawn() {
+                  const spawnPosition = new THREE.Vector3(0, 0, -10); // Adjust the position as needed
+                  const spawnRotation = new THREE.Euler(0, 0, 0, 'XYZ'); // Adjust the rotation as needed
+
+                  objGroup.position.copy(spawnPosition);
+                  objGroup.rotation.copy(spawnRotation);
+
+                  this.scene.add(objGroup);
+                }
 				
 				college.traverse(function (child) {
     				if (child.isMesh){
