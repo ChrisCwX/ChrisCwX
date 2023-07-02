@@ -100,6 +100,7 @@ class App{
         loader.load('ID3project.obj', (object) => {
             // Add the object to the scene or perform any other operations
             object.scale.set(112, 112, 112);
+            object.position.set(0, 0, 0);
             scene.add(object);
         });
 
