@@ -1,6 +1,7 @@
 
 import * as THREE from './libs/three/three.module.js';
 import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
+import { OBJLoader } from './libs/three/jsm/OBJLoader.js';
 import { DRACOLoader } from './libs/three/jsm/DRACOLoader.js';
 import { RGBELoader } from './libs/three/jsm/RGBELoader.js';
 import { Stats } from './libs/stats.module.js';
