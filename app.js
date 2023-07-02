@@ -115,11 +115,13 @@ class App{
                 objGroup.add(idproject);
 
                 spawn() {
-                  const spawnPosition = new THREE.Vector3(0, 0, -10); // Adjust the position as needed
+                  const spawnPosition = new THREE.Vector3(10, 10, -10); // Adjust the position as needed
                   const spawnRotation = new THREE.Euler(0, 0, 0, 'XYZ'); // Adjust the rotation as needed
+                  const spawnScale = new THREE.Vector3(112, 112, 112); // Adjust the scale
 
                   objGroup.position.copy(spawnPosition);
                   objGroup.rotation.copy(spawnRotation);
+                  objGroup.scale.copy(spawnScale);
 
                   this.scene.add(objGroup);
                 }
