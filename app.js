@@ -97,34 +97,18 @@ class App{
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath( './libs/three/js/draco/' );
         loader.setDRACOLoader( dracoLoader );
-        const objGroup = new THREE.Group();
         
         const self = this;
 		
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-             'ID3project.obj',
 			'college.glb',
 			// called when the resource is loaded
 			function ( gltf ) {
 
                 const college = gltf.scene.children[0];
 				self.scene.add( college );
-                const idproject = gltf.scene;
-                objGroup.add(idproject);
-
-                spawn() {
-                  const spawnPosition = new THREE.Vector3(10, 10, -10); // Adjust the position as needed
-                  const spawnRotation = new THREE.Euler(0, 0, 0, 'XYZ'); // Adjust the rotation as needed
-                  const spawnScale = new THREE.Vector3(112, 112, 112); // Adjust the scale
-
-                  objGroup.position.copy(spawnPosition);
-                  objGroup.rotation.copy(spawnRotation);
-                  objGroup.scale.copy(spawnScale);
-
-                  this.scene.add(objGroup);
-                }
 				
 				college.traverse(function (child) {
     				if (child.isMesh){
@@ -169,6 +153,41 @@ class App{
 			}
 		);
 	}
+
+    loadCollege() {
+      const objLoader = new THREE.OBJLoader();
+      const self = this;
+
+      objLoader.load(
+        // Resource URL
+        './assets/ID3project.obj',
+        // Called when the resource is loaded
+        function (object) {
+          object.traverse(function (child) {
+            if (child.isMesh) {
+              // Set material properties or perform any other modifications if needed
+            }
+          });
+
+          // Set the position, rotation, and scale of the loaded object as needed
+          object.position.set(0, 0, 0);
+          object.rotation.set(0, 0, 0);
+          object.scale.set(1, 1, 1);
+
+          self.scene.add(object);
+
+          self.loadingBar.visible = false;
+        },
+        // Called while loading is progressing
+        function (xhr) {
+          self.loadingBar.progress = xhr.loaded / xhr.total;
+        },
+        // Called when loading has errors
+        function (error) {
+          console.log('An error happened while loading the OBJ file.');
+        }
+      );
+    }
     
     setupXR(){
         this.renderer.xr.enabled = true;
