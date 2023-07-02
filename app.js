@@ -153,6 +153,26 @@ class App{
 			}
 		);
 	}
+
+    loadID3() {
+      const loader = new THREE.OBJLoader();
+      const self = this;
+
+      // Load the OBJ resource
+      loader.load(
+        // Resource URL
+        'ID3project.obj',
+        // Called when the resource is loaded
+        function (object) {
+          const id3 = object;
+          self.scene.add(id3);
+
+          self.loadingBar.visible = false;
+
+          self.setupXR();
+        },
+      );
+    }
     
     setupXR(){
         this.renderer.xr.enabled = true;
