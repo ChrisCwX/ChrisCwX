@@ -90,8 +90,18 @@ class App{
         this.camera.updateProjectionMatrix();
         this.renderer.setSize( window.innerWidth, window.innerHeight );  
     }
+
     
 	loadCollege(){
+
+        const loader = new THREE.OBJLoader();
+        const textureLoader = new THREE.TextureLoader();
+
+        // Load the object
+        loader.load('./assets/ID3project.obj', (object) => {
+            // Add the object to the scene or perform any other operations
+            scene.add(object);
+        });
         
 		const loader = new GLTFLoader( ).setPath(this.assetsPath);
         const dracoLoader = new DRACOLoader();
@@ -153,41 +163,6 @@ class App{
 			}
 		);
 	}
-
-    loadCollege() {
-      const objLoader = new THREE.OBJLoader();
-      const self = this;
-
-      objLoader.load(
-        // Resource URL
-        './assets/ID3project.obj',
-        // Called when the resource is loaded
-        function (object) {
-          object.traverse(function (child) {
-            if (child.isMesh) {
-              // Set material properties or perform any other modifications if needed
-            }
-          });
-
-          // Set the position, rotation, and scale of the loaded object as needed
-          object.position.set(0, 0, 0);
-          object.rotation.set(0, 0, 0);
-          object.scale.set(1, 1, 1);
-
-          self.scene.add(object);
-
-          self.loadingBar.visible = false;
-        },
-        // Called while loading is progressing
-        function (xhr) {
-          self.loadingBar.progress = xhr.loaded / xhr.total;
-        },
-        // Called when loading has errors
-        function (error) {
-          console.log('An error happened while loading the OBJ file.');
-        }
-      );
-    }
     
     setupXR(){
         this.renderer.xr.enabled = true;
