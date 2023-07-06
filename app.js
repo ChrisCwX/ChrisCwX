@@ -1,7 +1,7 @@
 
 import * as THREE from './libs/three/three.module.js';
 import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
-import { OBJLoader } from './libs/three/jsm/OBJLoader.js';
+//import { OBJLoader } from './libs/three/jsm/OBJLoader.js';
 import { DRACOLoader } from './libs/three/jsm/DRACOLoader.js';
 import { RGBELoader } from './libs/three/jsm/RGBELoader.js';
 import { Stats } from './libs/stats.module.js';
@@ -30,7 +30,7 @@ class App{
 		this.scene = new THREE.Scene();
         this.scene.add( this.dolly );
         
-		const ambient = new THREE.HemisphereLight(0xFFFFFF, 0xAAAAAA, 0.8);
+		const ambient = new THREE.HemisphereLight(0xFF0000, 0xAAAAAA, 0.8);
 		this.scene.add(ambient);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -53,9 +53,9 @@ class App{
 		container.appendChild( this.stats.dom );
         
 		this.loadingBar = new LoadingBar();
-		//hihihi
-		//this.loadCollege();
-        this.loadID3();
+		
+		this.loadCollege();
+        //this.loadID3();
         
         this.immersive = false;
         
@@ -156,7 +156,7 @@ class App{
 		);
 	}
 
-      loadID3() {
+     /* loadID3() {
       const loader = new THREE.OBJLoader();
       const self = this;
 
@@ -174,7 +174,7 @@ class App{
           self.setupXR();
         },
       );
-    }
+    }*/
     
     setupXR(){
         this.renderer.xr.enabled = true;
