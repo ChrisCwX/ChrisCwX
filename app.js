@@ -53,7 +53,7 @@ class App{
 		container.appendChild( this.stats.dom );
         
 		this.loadingBar = new LoadingBar();
-		//hihihih
+		//hihihi
 		//this.loadCollege();
         this.loadID3();
         
