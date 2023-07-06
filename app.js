@@ -54,7 +54,8 @@ class App{
         
 		this.loadingBar = new LoadingBar();
 		
-		this.loadCollege();
+		//this.loadCollege();
+        this.loadID3();
         
         this.immersive = false;
         
@@ -155,7 +156,7 @@ class App{
 		);
 	}
 
-      /*loadID3() {
+      loadID3() {
       const loader = new THREE.OBJLoader();
       const self = this;
 
@@ -173,7 +174,7 @@ class App{
           self.setupXR();
         },
       );
-    }*/
+    }
     
     setupXR(){
         this.renderer.xr.enabled = true;
